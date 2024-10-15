@@ -12,7 +12,7 @@ public class Produto {
         this.nomeProduto = nomeProduto;
         this.descricaoProduto = descricaoProduto;
         this.valorProduto = valorProduto;
-        this.categoria = categoria;
+        this.categoria = categoria; //FK do banco cuidados para manipular
     }
 
     public Produto(String nomeProduto, String descricaoProduto, double valorProduto, Categoria categoria) {

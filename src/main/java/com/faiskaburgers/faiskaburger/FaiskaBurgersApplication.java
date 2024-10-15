@@ -19,7 +19,7 @@ public class FaiskaBurgersApplication extends Application {
     }
 
     public static void main(String[] args) {
-        Platform.exit();
-        //launch();
+        //Platform.exit();
+        launch();
     }
 }
