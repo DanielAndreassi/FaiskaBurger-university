@@ -1,8 +1,12 @@
 package com.faiskaburgers.faiskaburger.database.dal;
 
+import com.faiskaburgers.faiskaburger.database.entity.Categoria;
 import com.faiskaburgers.faiskaburger.database.entity.Produto;
 import com.faiskaburgers.faiskaburger.database.util.SingletonDB;
 
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.List;
 
 public class ProdutoDAL implements IDAL<Produto> {
@@ -36,11 +40,48 @@ public class ProdutoDAL implements IDAL<Produto> {
 
     @Override
     public Produto get(int id) {
-        return null;
+        String sql = "SELECT * FROM produto WHERE produto_id ="+id;
+        Produto produto = new Produto();
+        ResultSet resultSet = SingletonDB.getConexao().consultar(sql);
+
+        try {
+            produto.setIdProduto(resultSet.getInt("produto_id"));
+            produto.setNomeProduto(resultSet.getString("produto_nome"));
+            produto.setDescricaoProduto(resultSet.getString("produto_desc"));
+            produto.setValorProduto(resultSet.getDouble("produto_valor"));
+            Categoria categoria = new Categoria();
+            categoria.setIdCategoria(resultSet.getInt("categoria_id"));
+            produto.setCategoria(categoria);
+
+        }
+        catch (SQLException e) {e.printStackTrace();}
+
+        return produto;
     }
 
     @Override
     public List<Produto> get(String filtro) {
-        return List.of();
+        List <Produto> produtos = new ArrayList<>();
+
+        String sql = "SELECT * FROM produto";
+        if(!filtro.isEmpty())
+            sql += " WHERE " + filtro;
+
+        System.out.println("SQL Query: " + sql);
+        ResultSet resultSet = SingletonDB.getConexao().consultar(sql);
+        try {
+            while (resultSet.next()) {
+                Categoria categoria = new Categoria();
+                categoria.setIdCategoria(resultSet.getInt("categoria_id"));
+                Produto produto = new Produto(resultSet.getString("produto_nome"),
+                        resultSet.getString("produto_desc"),
+                        resultSet.getDouble("produto_valor"),
+                        categoria
+                );
+                produtos.add(produto);
+            }
+        }catch (SQLException e) {e.printStackTrace();}
+
+        return produtos;
     }
 }
