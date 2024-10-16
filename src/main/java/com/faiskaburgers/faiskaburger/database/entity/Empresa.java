@@ -3,6 +3,7 @@ package com.faiskaburgers.faiskaburger.database.entity;
 public class Empresa {
     private int empresa_id;
     private String razao_social;
+    private String fantasia;
     private String cnpj;
     private String cep;
     private String rua;
@@ -14,9 +15,10 @@ public class Empresa {
     private String email;
     private double valor_embalagem;
 
-    public Empresa(int empresa_id, String razao_social, String cnpj, String cep, String rua, String numero, String bairro, String cidade, String UF, String telefone, String email, double valor_embalagem) {
+    public Empresa(int empresa_id, String razao_social, String fantasia,String cnpj, String cep, String rua, String numero, String bairro, String cidade, String UF, String telefone, String email, double valor_embalagem) {
         this.empresa_id = empresa_id;
         this.razao_social = razao_social;
+        this.fantasia = fantasia;
         this.cnpj = cnpj;
         this.cep = cep;
         this.rua = rua;
@@ -29,12 +31,12 @@ public class Empresa {
         this.valor_embalagem = valor_embalagem;
     }
 
-    public Empresa(String razao_social, String cnpj, String cep, String rua, String numero, String bairro, String cidade, String UF, String telefone, String email, double valor_embalagem) {
-        this(0,razao_social,cnpj,cep,rua,numero,bairro,cidade,UF,telefone,email,valor_embalagem);
+    public Empresa(String razao_social,String fantasia,String cnpj, String cep, String rua, String numero, String bairro, String cidade, String UF, String telefone, String email, double valor_embalagem) {
+        this(0,razao_social,fantasia,cnpj,cep,rua,numero,bairro,cidade,UF,telefone,email,valor_embalagem);
     }
 
     public Empresa() {
-        this(0,"","","","","","","","","","",0.0);
+        this(0,"","","","","","","","","","","",0.0);
     }
 
     public int getEmpresa_id() {
@@ -131,6 +133,14 @@ public class Empresa {
 
     public void setValor_embalagem(double valor_embalagem) {
         this.valor_embalagem = valor_embalagem;
+    }
+
+    public String getFantasia() {
+        return fantasia;
+    }
+
+    public void setFantasia(String fantasia) {
+        this.fantasia = fantasia;
     }
 
     @Override

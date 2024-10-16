@@ -67,7 +67,7 @@ public class ProdutoDAL implements IDAL<Produto> {
         if(!filtro.isEmpty())
             sql += " WHERE " + filtro;
 
-        System.out.println("SQL Query: " + sql);
+//        System.out.println("SQL Query: " + sql);
         ResultSet resultSet = SingletonDB.getConexao().consultar(sql);
         try {
             while (resultSet.next()) {
