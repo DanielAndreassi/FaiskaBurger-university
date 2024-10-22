@@ -14,7 +14,12 @@ public class Conexao
     {   erro="";
         connect=null;
     }
-    public boolean conectar(String local,String banco,String usuario,String senha)
+
+    public Connection getConnect() {
+        return connect;
+    }
+
+    public boolean conectar(String local, String banco, String usuario, String senha)
     {   boolean conectado=false;
         try {
             //Class.forName(driver); "org.postgresql.Driver");

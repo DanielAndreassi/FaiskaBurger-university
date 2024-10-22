@@ -97,5 +97,11 @@ public class Pedido {
         return itens;
     }
 
-
+    public void totalizarPedido () {
+        double total = 0;
+        for(Item item : itens){
+            total+=item.valor()*item.quantidade();
+        }
+        this.totalPedido = total;
+    }
 }
