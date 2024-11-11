@@ -11,17 +11,18 @@
 
 <VBox prefHeight="500.0" prefWidth="900.0" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.faiskaburgers.faiskaburger.TabelaProdutosController">
    <children>
-      <HBox alignment="CENTER" prefHeight="47.0" prefWidth="900.0" spacing="20.0" style="-fx-background-color: #828282;">
+      <HBox alignment="CENTER" prefHeight="50.0" prefWidth="900.0" spacing="20.0" style="-fx-background-color: #828282;">
          <children>
             <TextField fx:id="tfPesquisar" onKeyReleased="#onPesquisar" prefHeight="26.0" prefWidth="626.0" promptText="Informe parte do nome de um produto" />
             <Button mnemonicParsing="false" onAction="#onNovoProduto" text="+" />
          </children>
       </HBox>
-      <TableView fx:id="tableView" prefHeight="200.0" prefWidth="200.0" VBox.vgrow="ALWAYS">
+      <TableView fx:id="tableView" prefHeight="411.0" prefWidth="900.0" VBox.vgrow="ALWAYS">
         <columns>
           <TableColumn fx:id="coNome" prefWidth="75.0" text="Nome" />
-            <TableColumn fx:id="coValor" prefWidth="75.0" text="Valor" />
-            <TableColumn fx:id="coCategoria" prefWidth="75.0" text="Categoria" />
+            <TableColumn fx:id="coValor" maxWidth="100.0" prefWidth="100.0" text="Valor" />
+            <TableColumn fx:id="coCategoria" maxWidth="200.0" prefWidth="200.0" text="Categoria" />
+
         </columns>
          <columnResizePolicy>
             <TableView fx:constant="CONSTRAINED_RESIZE_POLICY" />
