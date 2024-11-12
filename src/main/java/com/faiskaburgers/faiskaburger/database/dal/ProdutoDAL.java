@@ -41,17 +41,19 @@ public class ProdutoDAL implements IDAL<Produto> {
     @Override
     public Produto get(int id) {
         String sql = "SELECT * FROM produto WHERE produto_id ="+id;
-        Produto produto = new Produto();
-        ResultSet resultSet = SingletonDB.getConexao().consultar(sql);
+        Produto produto = null;
 
         try {
-            produto.setIdProduto(resultSet.getInt("produto_id"));
-            produto.setNomeProduto(resultSet.getString("produto_nome"));
-            produto.setDescricaoProduto(resultSet.getString("produto_desc"));
-            produto.setValorProduto(resultSet.getDouble("produto_valor"));
-            Categoria categoria = new Categoria();
-            categoria.setIdCategoria(resultSet.getInt("categoria_id"));
-            produto.setCategoria(categoria);
+
+            ResultSet resultSet = SingletonDB.getConexao().consultar(sql);
+            if(resultSet.next()){
+                produto = new Produto(resultSet.getInt("produto_id"),
+                        resultSet.getString("produto_nome"),
+                        resultSet.getString("produto_desc"),
+                        resultSet.getDouble("produto_valor"),
+                        new CategorialDAL().get(resultSet.getInt("categoria_id")));
+            }
+
 
         }
         catch (SQLException e) {e.printStackTrace();}
@@ -68,16 +70,14 @@ public class ProdutoDAL implements IDAL<Produto> {
             sql += " WHERE " + filtro;
 
 //        System.out.println("SQL Query: " + sql);
-        ResultSet resultSet = SingletonDB.getConexao().consultar(sql);
         try {
+            ResultSet resultSet = SingletonDB.getConexao().consultar(sql);
+
             while (resultSet.next()) {
-                Categoria categoria = new Categoria();
-                categoria.setIdCategoria(resultSet.getInt("categoria_id"));
                 Produto produto = new Produto(resultSet.getString("produto_nome"),
                         resultSet.getString("produto_desc"),
                         resultSet.getDouble("produto_valor"),
-                        categoria
-                );
+                        new CategorialDAL().get(resultSet.getInt("categoria_id")));
                 produtos.add(produto);
             }
         }catch (SQLException e) {e.printStackTrace();}

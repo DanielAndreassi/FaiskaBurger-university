@@ -1,5 +1,6 @@
-package com.faiskaburgers.faiskaburger;
+package com.faiskaburgers.faiskaburger.controller;
 
+import com.faiskaburgers.faiskaburger.pedidosFX;
 import javafx.application.Platform;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
