@@ -9,6 +9,5 @@ module com.faiskaburgers.faiskaburger {
     opens com.faiskaburgers.faiskaburger.database.entity to javafx.fxml;
     exports com.faiskaburgers.faiskaburger;
     exports com.faiskaburgers.faiskaburger.database.entity;
-    exports com.faiskaburgers.faiskaburger.controller;
-    opens com.faiskaburgers.faiskaburger.controller to javafx.fxml;
+
 }

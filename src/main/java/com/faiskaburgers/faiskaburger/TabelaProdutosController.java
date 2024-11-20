@@ -1,9 +1,9 @@
-package com.faiskaburgers.faiskaburger.controller;
+package com.faiskaburgers.faiskaburger;
 
 import com.faiskaburgers.faiskaburger.database.dal.ProdutoDAL;
 import com.faiskaburgers.faiskaburger.database.entity.Categoria;
 import com.faiskaburgers.faiskaburger.database.entity.Produto;
-import com.faiskaburgers.faiskaburger.pedidosFX;
+import com.faiskaburgers.faiskaburger.database.util.SingletonDB;
 import javafx.collections.FXCollections;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -21,6 +21,7 @@ import java.util.List;
 import java.util.ResourceBundle;
 
 public class TabelaProdutosController implements Initializable {
+    public static Produto produto=null;
 
     @FXML
     private TableColumn<Produto, Categoria> coCategoria;
@@ -38,8 +39,20 @@ public class TabelaProdutosController implements Initializable {
     private TextField tfPesquisar;
 
     @FXML
-    void onAlterar(ActionEvent event) {
-
+    void onAlterar(ActionEvent event) throws Exception {
+        if(tableView.getSelectionModel().getSelectedIndex()>-1) {
+            produto = tableView.getSelectionModel().getSelectedItem();
+            Stage stage = new Stage();
+            FXMLLoader fxmlLoader = new FXMLLoader(pedidosFX.class.getResource("form-produtos-view.fxml"));
+            Scene scene = new Scene(fxmlLoader.load());
+            stage.setTitle("Produtos...");
+            stage.initModality(Modality.APPLICATION_MODAL);
+            stage.setScene(scene);
+            stage.showAndWait();
+            tfPesquisar.setText("");
+            carregarTabela("");
+            produto = null;
+        }
     }
 
     @FXML
@@ -48,24 +61,33 @@ public class TabelaProdutosController implements Initializable {
 
             Produto produto = tableView.getSelectionModel().getSelectedItem();
             Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
-
             alert.setTitle("Confirmar exclusao do produto?");
+
             if(alert.showAndWait().get() == ButtonType.OK) {
-                new ProdutoDAL().apagar(produto);
+                if(!new ProdutoDAL().apagar(produto)) {
+                    alert=new Alert(Alert.AlertType.ERROR);
+                    alert.setContentText("Erro ao apagar \n"+ SingletonDB.getConexao().getMensagemErro());
+                    alert.showAndWait();
+                }
+                else
+                    carregarTabela("");
             }
         }
     }
 
     @FXML
     void onNovoProduto(ActionEvent event) throws Exception{
-        Stage stage = new Stage();
+        tfPesquisar.getScene().getWindow().setOpacity(0.2);
+        Stage stage=new Stage();
         FXMLLoader fxmlLoader = new FXMLLoader(pedidosFX.class.getResource("form-produtos-view.fxml"));
-        Scene scene = new Scene(fxmlLoader.load(),320,240);
+        Scene scene = new Scene(fxmlLoader.load());
         stage.setTitle("Produtos...");
-        stage.setMaximized(true);
         stage.initModality(Modality.APPLICATION_MODAL);
         stage.setScene(scene);
         stage.showAndWait();
+        tfPesquisar.getScene().getWindow().setOpacity(1);
+        tfPesquisar.setText("");
+        carregarTabela("");
     }
 
     @FXML

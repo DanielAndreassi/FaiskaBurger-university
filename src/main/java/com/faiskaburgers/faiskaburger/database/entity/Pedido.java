@@ -1,3 +1,4 @@
+
 package com.faiskaburgers.faiskaburger.database.entity;
 
 import java.time.LocalDate;
@@ -91,6 +92,10 @@ public class Pedido {
 
     public boolean addItem(Produto produto, int quantidade) {
         return itens.add(new Item(produto,quantidade,produto.getValorProduto()));
+    }
+
+    public boolean addItem(Item item) {
+        return itens.add(item);
     }
 
     public List<Item> getItens() {
