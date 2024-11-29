@@ -1,6 +1,5 @@
 package com.faiskaburgers.faiskaburger.database.dal;
 
-import com.faiskaburgers.faiskaburger.database.entity.Categoria;
 import com.faiskaburgers.faiskaburger.database.entity.Produto;
 import com.faiskaburgers.faiskaburger.database.util.SingletonDB;
 
@@ -51,7 +50,7 @@ public class ProdutoDAL implements IDAL<Produto> {
                         resultSet.getString("produto_nome"),
                         resultSet.getString("produto_desc"),
                         resultSet.getDouble("produto_valor"),
-                        new CategorialDAL().get(resultSet.getInt("categoria_id")));
+                        new CategoriaDAL().get(resultSet.getInt("categoria_id")));
             }
 
 
@@ -77,7 +76,7 @@ public class ProdutoDAL implements IDAL<Produto> {
                 Produto produto = new Produto(resultSet.getString("produto_nome"),
                         resultSet.getString("produto_desc"),
                         resultSet.getDouble("produto_valor"),
-                        new CategorialDAL().get(resultSet.getInt("categoria_id")));
+                        new CategoriaDAL().get(resultSet.getInt("categoria_id")));
                 produtos.add(produto);
             }
         }catch (SQLException e) {e.printStackTrace();}

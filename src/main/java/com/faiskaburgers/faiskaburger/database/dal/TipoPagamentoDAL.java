@@ -14,7 +14,7 @@ public class TipoPagamentoDAL implements IDAL<TipoPagamento> {
     @Override
     public boolean gravar(TipoPagamento entidade) {
 
-        String sql = "INSERT INTO tipo_pagamento (tipo_pagamento_nome) VALUES (#1)";
+        String sql = "INSERT INTO tipo_pagamento (tipo_pagamento_nome) VALUES ('#1')";
         sql = sql.replace("#1", entidade.getTipoPagamento());
 
         return SingletonDB.getConexao().manipular(sql);

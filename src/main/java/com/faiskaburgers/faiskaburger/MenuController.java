@@ -11,6 +11,7 @@ import javafx.scene.control.ButtonType;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 
+import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
 
@@ -35,8 +36,15 @@ public class MenuController implements Initializable {
     }
 
     @FXML
-    void onCadCategoria(ActionEvent event) {
-
+    void onCadCategoria(ActionEvent event) throws IOException {
+        Stage stage = new Stage();
+        FXMLLoader fxmlLoader = new FXMLLoader(pedidosFX.class.getResource("tabela-categorias-view.fxml"));
+        Scene scene = new Scene(fxmlLoader.load(),320,240);
+        stage.setTitle("Cadastro de categorias");
+        stage.setMaximized(true);
+        stage.initModality(Modality.APPLICATION_MODAL);
+        stage.setScene(scene);
+        stage.showAndWait();
     }
 
     @FXML
@@ -52,13 +60,26 @@ public class MenuController implements Initializable {
     }
 
     @FXML
-    void onCadTipoPagamento(ActionEvent event) {
-
+    void onCadTipoPagamento(ActionEvent event) throws IOException {
+        Stage stage = new Stage();
+        FXMLLoader fxmlLoader = new FXMLLoader(pedidosFX.class.getResource("tabela-tpPagamento-view.fxml"));
+        Scene scene = new Scene(fxmlLoader.load(),320,240);
+        stage.setTitle("Cadastro de tipo de pagamento");
+        stage.setMaximized(true);
+        stage.initModality(Modality.APPLICATION_MODAL);
+        stage.setScene(scene);
+        stage.showAndWait();
     }
 
     @FXML
-    void onPedidoNovo(ActionEvent event) {
-
+    void onPedidoNovo(ActionEvent event) throws Exception{
+        Stage stage = new Stage();
+        FXMLLoader fmxlLoader = new FXMLLoader(pedidosFX.class.getResource("form-pedidos-view.fxml"));
+        Scene scene = new Scene(fmxlLoader.load());
+        stage.setTitle("Cadastro de pedidos");
+        stage.initModality(Modality.APPLICATION_MODAL);
+        stage.setScene(scene);
+        stage.showAndWait();
     }
 
     @FXML

@@ -1,10 +1,8 @@
 package com.faiskaburgers.faiskaburger;
 
-import com.faiskaburgers.faiskaburger.database.dal.CategorialDAL;
 import com.faiskaburgers.faiskaburger.database.dal.PedidoDAL;
 import com.faiskaburgers.faiskaburger.database.dal.ProdutoDAL;
 import com.faiskaburgers.faiskaburger.database.dal.TipoPagamentoDAL;
-import com.faiskaburgers.faiskaburger.database.entity.Categoria;
 import com.faiskaburgers.faiskaburger.database.entity.Pedido;
 import com.faiskaburgers.faiskaburger.database.entity.Produto;
 import com.faiskaburgers.faiskaburger.database.entity.TipoPagamento;

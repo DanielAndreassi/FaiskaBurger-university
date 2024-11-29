@@ -76,7 +76,7 @@ public class FormPedidosController implements Initializable {
 
     @FXML
     void onCancelar(ActionEvent event) {
-
+        tfID.getScene().getWindow().hide();
     }
 
     @FXML
@@ -99,7 +99,7 @@ public class FormPedidosController implements Initializable {
 
     @FXML
     void onSelProduto(ActionEvent event) {
-        ModalTable mt=new ModalTable(new ProdutoDAL().get(""),new String[]{"idProduto","nomeProduto","valorProduto","fone"},"nomeProduto");
+        ModalTable mt=new ModalTable(new ProdutoDAL().get(""),new String[]{"idProduto","nomeProduto","valorProduto","categoria"},"nomeProduto");
         Stage stage=new Stage();
         stage.setScene(new Scene(mt));
         stage.setWidth(600); stage.setHeight(480); stage.initStyle(StageStyle.UNDECORATED);
@@ -114,7 +114,7 @@ public class FormPedidosController implements Initializable {
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
-        coProduto.setCellValueFactory(cellData-> new SimpleStringProperty(cellData.getValue(),produto.getNomeProduto()));
+        coProduto.setCellValueFactory(cellData-> new SimpleStringProperty(cellData.getValue().produto().getNomeProduto()));
         coQuantidade.setCellValueFactory(cellData-> new SimpleStringProperty(""+cellData.getValue().quantidade()));
         coValor.setCellValueFactory(cellData-> new SimpleStringProperty(""+cellData.getValue().valor()));
         MaskFieldUtil.foneField(tfTelefone);

@@ -1,6 +1,6 @@
 package com.faiskaburgers.faiskaburger;
 
-import com.faiskaburgers.faiskaburger.database.dal.CategorialDAL;
+import com.faiskaburgers.faiskaburger.database.dal.CategoriaDAL;
 import com.faiskaburgers.faiskaburger.database.dal.ProdutoDAL;
 import com.faiskaburgers.faiskaburger.database.entity.Categoria;
 import com.faiskaburgers.faiskaburger.database.entity.Produto;
@@ -86,7 +86,7 @@ public class FormProdutosController implements Initializable {
 
     private void carregarCategorias() {
         List<Categoria> categoriaList;
-        categoriaList=new CategorialDAL().get("");
+        categoriaList=new CategoriaDAL().get("");
         cbCategoria.setItems(FXCollections.observableArrayList(categoriaList));
         cbCategoria.getSelectionModel().select(0); //mostra o primeiro elemento
     }
