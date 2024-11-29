@@ -92,7 +92,7 @@ public class TabelaCategoriasController implements Initializable {
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
-        coNome.setCellValueFactory(new PropertyValueFactory<>("nomeCategoria"));
+        coNome.setCellValueFactory(new PropertyValueFactory<>("idPedido"));
         carregarTabela("");
     }
 

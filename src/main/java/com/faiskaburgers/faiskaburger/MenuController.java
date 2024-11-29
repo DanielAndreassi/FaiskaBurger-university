@@ -18,8 +18,14 @@ import java.util.ResourceBundle;
 public class MenuController implements Initializable {
 
     @FXML
-    void onAbrirProduto(ActionEvent event) {
-
+    void onAbrirProduto(ActionEvent event) throws IOException {
+        Stage stage = new Stage();
+        FXMLLoader fmxlLoader = new FXMLLoader(pedidosFX.class.getResource("tabela-abrir-pedido-view.fxml"));
+        Scene scene = new Scene(fmxlLoader. load());
+        stage.setTitle("Pedidos abertos");
+        stage.initModality(Modality.APPLICATION_MODAL);
+        stage.setScene(scene);
+        stage.showAndWait();
     }
 
     @FXML

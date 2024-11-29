@@ -136,7 +136,8 @@ public class PedidoDAL implements IDAL<Pedido> {
         Pedido pedido = null;
 
         String sql = "SELECT * FROM pedido";
-        if(!filtro.isEmpty()) sql+=" WHERE "+filtro;
+        if(!filtro.isEmpty())
+            sql+=" WHERE "+filtro;
         try {
             ResultSet resultset = SingletonDB.getConexao().consultar(sql);
             while(resultset.next()) {
@@ -149,7 +150,7 @@ public class PedidoDAL implements IDAL<Pedido> {
                         new TipoPagamentoDAL().get(resultset.getInt("tipo_pagamento_id")));
                 pedidos.add(pedido);
             }
-            String sql2 = "SELECT * FROM item WHERE pedido_id="+pedido.getIdPedido();
+            String sql2 = "SELECT * FROM item WHERE pedido_id= "+pedido.getIdPedido();
             ResultSet resultset2 = SingletonDB.getConexao().consultar(sql2);
 
             while(resultset2.next()) {
